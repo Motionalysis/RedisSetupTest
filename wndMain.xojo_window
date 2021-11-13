@@ -216,24 +216,28 @@ End
 #tag Events btnRun
 	#tag Event
 		Sub Action()
+		  var r as new Redis_MTC(App.RedisPassword,App.RedisAddress,App.RedisPort)
+		  var result as Boolean
 		  Try
-		    var r as new Redis_MTC(App.RedisPassword,App.RedisAddress,App.RedisPort)
-		    var result as Boolean=r.Execute(txtRedisCommand.Text)
-		    if result then
-		      txtRedisCommandResult.Text=txtRedisCommand.Text+":  "+str(result)
-		      txtRedisCommand.Text=""
-		    else
-		      var s as string = txtRedisCommandResult.Text
-		      txtRedisCommandResult.Text="Error in command: "+txtRedisCommand.Text+":  "+str(result)+_
-		      EndOfLine + txtRedisCommandResult.Text
-		      txtRedisCommand.TextColor=Color.Red
-		    end if
+		    Try
+		      result=r.Execute(txtRedisCommand.Text)
+		    Catch error as M_Redis.RedisException
+		      MessageBox(error.Message)
+		      return
+		    End Try
 		  Catch error as RuntimeException
 		    MessageBox(error.Message)
-		  Catch error as M_Redis.RedisException
-		    MessageBox(error.Message)
-		    return
 		  End Try
+		  
+		  if result then
+		    txtRedisCommandResult.Text=txtRedisCommand.Text+":  "+str(result)
+		    txtRedisCommand.Text=""
+		  else
+		    var s as string = txtRedisCommandResult.Text
+		    txtRedisCommandResult.Text="Error in command: "+txtRedisCommand.Text+":  "+str(result)+_
+		    EndOfLine + txtRedisCommandResult.Text
+		    txtRedisCommand.TextColor=Color.Red
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
