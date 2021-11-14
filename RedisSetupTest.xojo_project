@@ -18,6 +18,7 @@ Class=SortedSetItem;Redis Module/M_Redis/SortedSetItem.xojo_code;&h000000007DF35
 Class=Placeholder;Redis Module/M_Redis/Placeholder.xojo_code;&h000000005DCB1FFF;&h0000000016792FFF;false
 Class=LatencyReport;Redis Module/M_Redis/LatencyReport.xojo_code;&h0000000043DF77FF;&h0000000016792FFF;false
 Class=RedisServer_MTC;Redis Module/M_Redis/RedisServer_MTC.xojo_code;&h0000000033840FFF;&h0000000016792FFF;false
+DefaultWindow=wndMain
 AppMenuBar=MainMenuBar
 MajorVersion=1
 MinorVersion=0

@@ -4,16 +4,9 @@ Inherits Application
 	#tag Event
 		Sub Open()
 		  LocalServer = NewLocalServer
-		  LocalServer.Port = RedisPort
-		  LocalServer.Start
+		  'LocalServer.Port = RedisPort
+		  'LocalServer.Start
 		  
-		  var r as new Redis_MTC(RedisPassword,RedisAddress,RedisPort)
-		  
-		  var redisready as Boolean = r.Set("attached","alive")
-		  If r.Get("attached")="alive" then
-		    wndMain.loRedis.FillColor=Color.Green
-		  end if
-		  wndMain.Show
 		End Sub
 	#tag EndEvent
 
@@ -51,16 +44,16 @@ Inherits Application
 		  #endif
 		  
 		  // no saving conf file
-		  'dim configFile as FolderItem = ResourcesFolder.Child( "redis-port-31999-no-save.conf" )
+		  dim configFile as FolderItem = ResourcesFolder.Child( "redis-port-31999-no-save.conf" )
 		  
 		  // saving conf file
-		  dim configFile as FolderItem = ResourcesFolder.Child("Motionalysis").Child("redis-server-gui.conf")
+		  'dim configFile as FolderItem = ResourcesFolder.Child("Redis Server Windows").Child("redis-server-gui.conf")
 		  
 		  dim server as new RedisServer_MTC
 		  server.RedisServerFile = serverFile
 		  server.ConfigFile = configFile
-		  server.DBFilename = "testmotiodata.rdb"
-		  server.WorkingDirectory=SpecialFolder.SharedApplicationData.Child("Motionalysis")
+		  'server.DBFilename = "testmotiodata.rdb"
+		  'server.WorkingDirectory=SpecialFolder.SharedApplicationData.Child("Motionalysis")
 		  return server
 		  
 		End Function

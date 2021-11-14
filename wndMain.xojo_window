@@ -42,6 +42,7 @@ Begin Window wndMain
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Transparent     =   False
@@ -211,6 +212,30 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  App.LocalServer.Port = App.RedisPort
+		  App.LocalServer.Start
+		  
+		  Timer.CallLater(500, AddressOf RedisInit)
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub RedisInit()
+		  
+		  
+		  var r as new Redis_MTC(App.RedisPassword,App.RedisAddress,6379)
+		  
+		  var redisready as Boolean = r.Set("attached","alive")
+		  If r.Get("attached")="alive" then
+		    wndMain.loRedis.FillColor=Color.Green
+		  end if
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events btnRun
