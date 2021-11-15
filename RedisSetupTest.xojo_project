@@ -6,7 +6,6 @@ Class=App;App.xojo_code;&h0000000049ABAFFF;&h0000000000000000;false
 Window=wndMain;wndMain.xojo_window;&h00000000247C47FF;&h0000000000000000;false
 MenuBar=MainMenuBar;MainMenuBar.xojo_menu;&h00000000763A27FF;&h0000000000000000;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h000000002BA597FF;&h0000000000000000;false
-Module=Redis;Redis.xojo_code;&h00000000157B1FFF;&h0000000000000000;false
 Folder=Redis Module;Redis Module;&h000000002A26BFFF;&h0000000000000000;false
 Module=M_Redis;Redis Module/M_Redis.xojo_code;&h0000000016792FFF;&h000000002A26BFFF;false
 Class=Redis_MTC;Redis Module/M_Redis/Redis_MTC.xojo_code;&h00000000638307FF;&h0000000016792FFF;false

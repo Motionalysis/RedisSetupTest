@@ -21,12 +21,6 @@ Inherits Application
 
 
 	#tag Method, Flags = &h0
-		Sub Initialize()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function NewLocalServer() As RedisServer_MTC
 		  dim serverFile as FolderItem 
 		  #if TargetMacOS then

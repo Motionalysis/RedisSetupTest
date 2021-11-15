@@ -29,7 +29,7 @@ Begin Window wndMain
       BorderColor     =   &c00000000
       BorderThickness =   1.0
       Enabled         =   True
-      FillColor       =   &cFFFFFF00
+      FillColor       =   &cC0C0C000
       Height          =   22
       Index           =   -2147483648
       InitialParent   =   ""
@@ -42,7 +42,6 @@ Begin Window wndMain
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Transparent     =   False
@@ -217,6 +216,7 @@ End
 		  App.LocalServer.Port = App.RedisPort
 		  App.LocalServer.Start
 		  
+		  // just give redis a moment to spin up
 		  Timer.CallLater(500, AddressOf RedisInit)
 		End Sub
 	#tag EndEvent
@@ -230,7 +230,7 @@ End
 		  
 		  var redisready as Boolean = r.Set("attached","alive")
 		  If r.Get("attached")="alive" then
-		    wndMain.loRedis.FillColor=Color.Green
+		    wndMain.loRedis.FillColor=Color.Black
 		  end if
 		End Sub
 	#tag EndMethod
