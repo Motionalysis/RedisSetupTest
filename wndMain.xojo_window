@@ -176,7 +176,7 @@ Begin Window wndMain
       HasBorder       =   True
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
-      Height          =   237
+      Height          =   168
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
@@ -199,10 +199,85 @@ Begin Window wndMain
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   122
+      Top             =   191
       Transparent     =   False
       Underline       =   False
       UnicodeMode     =   1
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   354
+   End
+   Begin PushButton btnHSET
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "HSET"
+      Default         =   True
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   22
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   397
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   122
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin TextField txtRedisCommand1
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   22
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "pepper,noodle"
+      TextAlignment   =   0
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   122
+      Transparent     =   False
+      Underline       =   False
       ValidationMask  =   ""
       Visible         =   True
       Width           =   354
@@ -263,6 +338,33 @@ End
 		    EndOfLine + txtRedisCommandResult.Text
 		    txtRedisCommand.TextColor=Color.Red
 		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnHSET
+	#tag Event
+		Sub Action()
+		  var r as new Redis_MTC(App.RedisPassword,App.RedisAddress,App.RedisPort)
+		  var result as integer
+		  var x,s() as string
+		  var d as dictionary = new dictionary
+		  
+		  Try
+		    Try
+		      x=txtRedisCommand1.Text
+		      s=x.split(",")
+		      d.value("name")=s(0)
+		      d.value("type")=s(1)
+		      r.HSetMultiple("Test:Level:three",d)
+		    Catch error as M_Redis.RedisException
+		      MessageBox(error.Message)
+		      return
+		    End Try
+		  Catch error as RuntimeException
+		    MessageBox(error.Message)
+		  End Try
+		  d=r.HGetAll("Test:Level:three")
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

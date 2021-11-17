@@ -2,6 +2,12 @@
 Protected Class App
 Inherits Application
 	#tag Event
+		Sub Close()
+		  LocalServer.Stop
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  LocalServer = NewLocalServer
 		  'LocalServer.Port = RedisPort
